@@ -1,14 +1,13 @@
+import 'package:calculadora_imc/screens/imc_calculator_screens.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Scaffold(
-        body: Text("Olá"),
-      )));
+    title: 'Flutter Demo',
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(
+      useMaterial3: true,
+    ),
+    home: const ImcCalculatorScreen(),
+  ));
 }
