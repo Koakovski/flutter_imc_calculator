@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ImcInput extends StatelessWidget {
@@ -6,6 +7,7 @@ class ImcInput extends StatelessWidget {
   final String iconPath;
   final String hintText;
   final String suffix;
+  final List<TextInputFormatter> textFormatters;
 
   const ImcInput({
     super.key,
@@ -13,6 +15,7 @@ class ImcInput extends StatelessWidget {
     required this.iconPath,
     required this.hintText,
     required this.suffix,
+    this.textFormatters = const [],
   });
 
   @override
@@ -34,6 +37,7 @@ class ImcInput extends StatelessWidget {
             child: TextField(
               keyboardType: TextInputType.number,
               controller: controller,
+              inputFormatters: textFormatters,
               decoration: InputDecoration(
                 suffix: Container(
                   padding: const EdgeInsets.only(right: 10),

@@ -3,6 +3,8 @@ import "package:calculadora_imc/screens/components/calculate_imc_button.dart";
 import "package:calculadora_imc/screens/components/imc_display.dart";
 import "package:calculadora_imc/screens/components/imc_input.dart";
 import "package:calculadora_imc/screens/components/custom_title.dart";
+import "package:calculadora_imc/screens/input_formatters/digits_only_input_formatter.dart";
+import "package:calculadora_imc/screens/input_formatters/height_input_formatter.dart";
 import "package:flutter/material.dart";
 
 class ImcCalculatorScreen extends StatefulWidget {
@@ -28,27 +30,34 @@ class _ImcCalculatorScreenState extends State<ImcCalculatorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ImcInput weightInput = ImcInput(
+      hintText: "Informe seu peso",
+      suffix: "kg",
+      controller: _weightController,
+      iconPath: "assets/icons/weight_scale.svg",
+      textFormatters: [digitsOnlyFormatter],
+    );
+
+    ImcInput heightInput = ImcInput(
+      hintText: "Informe sua altura",
+      suffix: "m",
+      controller: _heigthController,
+      iconPath: "assets/icons/height.svg",
+      textFormatters: [heightInputFormatter],
+    );
+
     return Scaffold(
-        backgroundColor: const Color(0xF2F2F2F2),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const CustomTitle("Calculadora IMC"),
-            ImcInput(
-              hintText: "Informe seu peso",
-              suffix: "kg",
-              controller: _weightController,
-              iconPath: "assets/icons/weight_scale.svg",
-            ),
-            ImcInput(
-              hintText: "Informe sua altura",
-              suffix: "m",
-              controller: _heigthController,
-              iconPath: "assets/icons/height.svg",
-            ),
-            CalculateImcButton(onPressed: calculateIMC),
-            ImcDisplay(_imc)
-          ],
-        ));
+      backgroundColor: const Color(0xF2F2F2F2),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const CustomTitle("Calculadora IMC"),
+          weightInput,
+          heightInput,
+          CalculateImcButton(onPressed: calculateIMC),
+          ImcDisplay(_imc)
+        ],
+      ),
+    );
   }
 }
