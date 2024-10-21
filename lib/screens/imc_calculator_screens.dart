@@ -48,15 +48,23 @@ class _ImcCalculatorScreenState extends State<ImcCalculatorScreen> {
 
     return Scaffold(
       backgroundColor: const Color(0xF2F2F2F2),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const CustomTitle("Calculadora IMC"),
-          weightInput,
-          heightInput,
-          CalculateImcButton(onPressed: calculateIMC),
-          ImcDisplay(_imc)
-        ],
+      body: Center(
+        child: SingleChildScrollView(
+          child: GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: Column(
+              children: [
+                const CustomTitle("Calculadora IMC"),
+                weightInput,
+                heightInput,
+                CalculateImcButton(onPressed: calculateIMC),
+                ImcDisplay(_imc)
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
